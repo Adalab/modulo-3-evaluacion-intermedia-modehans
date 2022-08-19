@@ -10,6 +10,10 @@
   color: purple;
 }
 
+.logo {
+  width: 200px;
+}
+
 .title {
   font-size: 2em;
   font-weight: 700;
@@ -34,6 +38,10 @@
     border: 1px grey ridge;
     border-radius: 0.5em;
     padding: 0.5em;
+
+    &-quote {
+      line-height: 20px;
+    }
 
     &-character {
       color: green;
