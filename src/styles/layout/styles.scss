@@ -15,6 +15,13 @@
   font-weight: 700;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
 .list {
   width: 80hv;
   display: flex;
@@ -31,6 +38,21 @@
     &-character {
       color: green;
     }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  &__title {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  &__btn {
+    max-width: 120px;
   }
 }
 
