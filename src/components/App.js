@@ -4,9 +4,10 @@ import '../styles/core/reset.scss';
 import { useEffect, useState } from 'react';
 import callToApi from '../services/api';
 import logo from '../images/logofriends.png';
+import ls from '../services/localStorage';
 
 function App() {
-  const [dataPhrases, setDataPhrases] = useState([]);
+  const [dataPhrases, setDataPhrases] = useState(ls.get('data', []) || []);
   const [newPhrase, setNewPhrase] = useState({
     character: '',
     quote: '',
@@ -26,6 +27,10 @@ function App() {
       setDataPhrases(response);
     });
   }, []);
+
+  useEffect(() => {
+    ls.set('data', dataPhrases);
+  }, [dataPhrases]);
 
   const hancleChangePhrase = (ev) => {
     setNewPhrase({ ...newPhrase, [ev.target.id]: ev.target.value });
