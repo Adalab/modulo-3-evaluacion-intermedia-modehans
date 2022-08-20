@@ -14,6 +14,7 @@ function App() {
   });
   const [filterQuote, setFilterQuote] = useState('');
   const [filterCharacter, setFilterCharacter] = useState('Todos');
+  const [selectCharacters, setSelectCharacters] = useState(['Todos']);
 
   const handlefilterQuote = (ev) => {
     setFilterQuote(ev.target.value);
@@ -22,14 +23,24 @@ function App() {
   const handleFilterCharacter = (ev) => {
     setFilterCharacter(ev.target.value);
   };
+
   useEffect(() => {
     callToApi().then((response) => {
       setDataPhrases(response);
     });
   }, []);
 
+  const unique = (arrayData) => {
+    let mySet = new Set();
+    arrayData.map((phrase) => mySet.add(phrase.character));
+    return Array.from(mySet);
+  };
+
   useEffect(() => {
     ls.set('data', dataPhrases);
+    const arrayCharacters = unique(dataPhrases);
+    console.log(arrayCharacters);
+    setSelectCharacters([...selectCharacters, arrayCharacters]);
   }, [dataPhrases]);
 
   const hancleChangePhrase = (ev) => {
@@ -38,11 +49,20 @@ function App() {
 
   const handleClickSavePhrase = (ev) => {
     ev.preventDefault();
-    setDataPhrases([...dataPhrases, newPhrase]);
-    setNewPhrase({
-      character: '',
-      quote: '',
-    });
+    if (newPhrase.quote !== '' && newPhrase.character !== '') {
+      setDataPhrases([...dataPhrases, newPhrase]);
+      setNewPhrase({
+        character: '',
+        quote: '',
+      });
+    }
+  };
+  const renderOptions = () => {
+    return selectCharacters.map((option, index) => (
+      <option key={index} value={option}>
+        {option}
+      </option>
+    ));
   };
 
   const renderPhrases = () => {
@@ -72,7 +92,12 @@ function App() {
   return (
     <div className="container">
       <header>
-        <img className="logo" alt="Logo Friends" href={logo} />
+        <img
+          className="logo"
+          title="Logo Friends"
+          alt="Logo Friends"
+          src={logo}
+        />
         <h1 className="title">Frases de Friends</h1>
       </header>
       <main className="main">
@@ -97,13 +122,7 @@ function App() {
             onChange={handleFilterCharacter}
             value={filterCharacter}
           >
-            <option value="Todos">Todos</option>
-            <option value="Chandler">Chandler</option>
-            <option value="Joey">Joey</option>
-            <option value="Monica">Monica</option>
-            <option value="Phoebe">Phoebe</option>
-            <option value="Rachel">Rachel</option>
-            <option value="Ross">Ross</option>
+            {renderOptions()}
           </select>
         </form>
 
