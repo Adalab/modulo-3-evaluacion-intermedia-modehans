@@ -27,14 +27,13 @@
 }
 
 .list {
-  width: 80hv;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
 
   &__phrase {
-    width: 40%;
+    width: 30vh;
     border: 1px grey ridge;
     border-radius: 0.5em;
     padding: 0.5em;

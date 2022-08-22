@@ -7,14 +7,14 @@ import logo from '../images/logofriends.png';
 import ls from '../services/localStorage';
 
 function App() {
-  const [dataPhrases, setDataPhrases] = useState(ls.get('data', []) || []);
+  const [dataPhrases, setDataPhrases] = useState(ls.get('data', []));
   const [newPhrase, setNewPhrase] = useState({
     character: '',
     quote: '',
   });
   const [filterQuote, setFilterQuote] = useState('');
   const [filterCharacter, setFilterCharacter] = useState('Todos');
-  const [selectCharacters, setSelectCharacters] = useState(['Todos']);
+  const [selectCharacters, setSelectCharacters] = useState([]);
 
   const handlefilterQuote = (ev) => {
     setFilterQuote(ev.target.value);
@@ -40,7 +40,7 @@ function App() {
     ls.set('data', dataPhrases);
     const arrayCharacters = unique(dataPhrases);
     console.log(arrayCharacters);
-    setSelectCharacters([...selectCharacters, arrayCharacters]);
+    setSelectCharacters(['Todos', ...arrayCharacters]);
   }, [dataPhrases]);
 
   const hancleChangePhrase = (ev) => {
