@@ -7,7 +7,7 @@ import logo from '../images/logofriends.png';
 import ls from '../services/localStorage';
 
 function App() {
-  const [dataPhrases, setDataPhrases] = useState(ls.get('dataPhrases', []));
+  const [dataPhrases, setDataPhrases] = useState(ls.get('dataLs', []));
   const [newPhrase, setNewPhrase] = useState({
     character: '',
     quote: '',
@@ -24,14 +24,6 @@ function App() {
     setFilterCharacter(ev.target.value);
   };
 
-  useEffect(() => {
-    if (dataPhrases.lenth === 0) {
-      callToApi().then((response) => {
-        setDataPhrases(response);
-      });
-    }
-  }, []);
-
   const unique = (arrayData) => {
     let mySet = new Set();
     arrayData.forEach((phrase) => mySet.add(phrase.character));
@@ -39,7 +31,16 @@ function App() {
   };
 
   useEffect(() => {
-    ls.set('dataPhrases', dataPhrases);
+    console.log(dataPhrases);
+    if (dataPhrases.length === 0) {
+      callToApi().then((response) => {
+        setDataPhrases(response);
+      });
+    }
+  });
+
+  useEffect(() => {
+    ls.set('dataLs', dataPhrases);
     const arrayCharacters = unique(dataPhrases);
     console.log(arrayCharacters);
     setSelectCharacters(['Todos', ...arrayCharacters]);
