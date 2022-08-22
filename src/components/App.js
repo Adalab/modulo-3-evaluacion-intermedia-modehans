@@ -32,7 +32,7 @@ function App() {
 
   const unique = (arrayData) => {
     let mySet = new Set();
-    arrayData.map((phrase) => mySet.add(phrase.character));
+    arrayData.forEach((phrase) => mySet.add(phrase.character));
     return Array.from(mySet);
   };
 
