@@ -19,7 +19,7 @@ function App() {
   const [filterCharacter, setFilterCharacter] = useState('Todos');
   const [selectCharacters, setSelectCharacters] = useState([]);
 
-  const handlefilterQuote = (inputValue) => {
+  const handleFilterQuote = (inputValue) => {
     setFilterQuote(inputValue);
   };
 
@@ -95,7 +95,7 @@ function App() {
       <main className="main">
         <Filter
           filterQuote={filterQuote}
-          handlefilterQuote={handlefilterQuote}
+          handleFilterQuote={handleFilterQuote}
           selectCharacters={selectCharacters}
           filterCharacter={filterCharacter}
           handleFilterCharacter={handleFilterCharacter}
