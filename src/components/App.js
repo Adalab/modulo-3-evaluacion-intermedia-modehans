@@ -1,10 +1,12 @@
 // Fichero src/components/App.js
 import '../styles/App.scss';
 import '../styles/core/reset.scss';
+
 import { useEffect, useState } from 'react';
 import callToApi from '../services/api';
-import logo from '../images/logofriends.png';
+
 import ls from '../services/localStorage';
+import Header from './Header';
 
 function App() {
   const [dataPhrases, setDataPhrases] = useState(ls.get('dataLs', []));
@@ -94,15 +96,8 @@ function App() {
 
   return (
     <div className="container">
-      <header>
-        <img
-          className="logo"
-          title="Logo Friends"
-          alt="Logo Friends"
-          src={logo}
-        />
-        <h1 className="title">Frases de Friends</h1>
-      </header>
+      <Header />
+
       <main className="main">
         <form className="formFilter">
           <label className="formFilter__label" htmlFor="quote">
