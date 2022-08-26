@@ -39,4 +39,5 @@ const Filter = (props) => {
     </form>
   );
 };
+
 export default Filter;

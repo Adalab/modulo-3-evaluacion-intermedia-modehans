@@ -100,29 +100,6 @@ function App() {
           filterCharacter={filterCharacter}
           handleFilterCharacter={handleFilterCharacter}
         />
-        {/*    <form className="formFilter">
-          <label className="formFilter__label" htmlFor="quote">
-            Filtrar por frase
-          </label>
-          <input
-            type="text"
-            name="quote"
-            id="quote"
-            value={filterQuote}
-            onChange={handlefilterQuote}
-          ></input>
-          <label className="formFilter__label" htmlFor="character">
-            Filtrar por personaje
-          </label>
-          <select
-            name="character"
-            id="character"
-            onChange={handleFilterCharacter}
-            value={filterCharacter}
-          >
-            {renderOptions()}
-          </select>
-        </form> */}
 
         <ul className="list">{renderPhrases()}</ul>
 
