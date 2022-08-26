@@ -7,6 +7,7 @@ import callToApi from '../services/api';
 
 import ls from '../services/localStorage';
 import Header from './Header';
+import Filter from './Filter';
 
 function App() {
   const [dataPhrases, setDataPhrases] = useState(ls.get('dataLs', []));
@@ -18,12 +19,12 @@ function App() {
   const [filterCharacter, setFilterCharacter] = useState('Todos');
   const [selectCharacters, setSelectCharacters] = useState([]);
 
-  const handlefilterQuote = (ev) => {
-    setFilterQuote(ev.target.value);
+  const handlefilterQuote = (inputValue) => {
+    setFilterQuote(inputValue);
   };
 
-  const handleFilterCharacter = (ev) => {
-    setFilterCharacter(ev.target.value);
+  const handleFilterCharacter = (inputValue) => {
+    setFilterCharacter(inputValue);
   };
 
   const unique = (arrayData) => {
@@ -62,13 +63,6 @@ function App() {
       });
     }
   };
-  const renderOptions = () => {
-    return selectCharacters.map((option, index) => (
-      <option key={index} value={option}>
-        {option}
-      </option>
-    ));
-  };
 
   const renderPhrases = () => {
     return dataPhrases
@@ -99,22 +93,28 @@ function App() {
       <Header />
 
       <main className="main">
-        <form className="formFilter">
+        <Filter
+          filterQuote={filterQuote}
+          handlefilterQuote={handlefilterQuote}
+          selectCharacters={selectCharacters}
+          filterCharacter={filterCharacter}
+          handleFilterCharacter={handleFilterCharacter}
+        />
+        {/*    <form className="formFilter">
           <label className="formFilter__label" htmlFor="quote">
             Filtrar por frase
           </label>
           <input
-            className="formFilter__input"
             type="text"
             name="quote"
             id="quote"
+            value={filterQuote}
             onChange={handlefilterQuote}
           ></input>
-          <label className="form-filter__label" htmlFor="character">
+          <label className="formFilter__label" htmlFor="character">
             Filtrar por personaje
           </label>
           <select
-            className="form-filter__select"
             name="character"
             id="character"
             onChange={handleFilterCharacter}
@@ -122,7 +122,7 @@ function App() {
           >
             {renderOptions()}
           </select>
-        </form>
+        </form> */}
 
         <ul className="list">{renderPhrases()}</ul>
 

@@ -42,7 +42,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
 
   &__title {
     font-size: 1.5em;
@@ -51,9 +51,29 @@
 
   &__btn {
     max-width: 120px;
+    height: 2em;
+    border-radius: 5px;
+    border: 2px ridge purple;
+    background-color: plum;
+    color: purple;
+    font-weight: 700;
+    transition: 300ms;
+
+    &:hover {
+      background-color: white;
+      scale: 1.1;
+    }
   }
 }
 
-.hidden {
-  display: none;
+
+.formFilter {
+  display: flex;
+  gap: 1em;
+
+  &__label {
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
 }
