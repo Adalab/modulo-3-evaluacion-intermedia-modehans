@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+
+  &__phrase {
+    width: 50vh;
+    border: 1px grey ridge;
+    border-radius: 0.5em;
+    padding: 0.5em;
+
+    &-quote {
+      line-height: 20px;
+    }
+
+    &-character {
+      color: green;
+    }
+  }
+}

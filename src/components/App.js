@@ -7,7 +7,8 @@ import callToApi from '../services/api';
 
 import ls from '../services/localStorage';
 import Header from './Header';
-import Filter from './Filter';
+import Filters from './Filters';
+import PhraseList from './PhraseList';
 
 function App() {
   const [dataPhrases, setDataPhrases] = useState(ls.get('dataLs', []));
@@ -62,36 +63,12 @@ function App() {
     }
   };
 
-  const renderPhrases = () => {
-    return dataPhrases
-      .filter((phrase) => {
-        return phrase.quote.toLowerCase().includes(filterQuote.toLowerCase());
-      })
-      .filter((phrase) => {
-        if (filterCharacter === 'Todos') {
-          return true;
-        }
-        return phrase.character === filterCharacter;
-      })
-      .map((phrase, index) => (
-        <li key={index} className="list__phrase">
-          <p className="list__phrase-quote">
-            {phrase.quote}{' '}
-            <span className="list__phrase-character">
-              {' '}
-              - {phrase.character}
-            </span>
-          </p>
-        </li>
-      ));
-  };
-
   return (
     <div className="container">
       <Header />
 
       <main className="main">
-        <Filter
+        <Filters
           filterQuote={filterQuote}
           handleFilterQuote={handleFilterQuote}
           selectCharacters={selectCharacters}
@@ -99,7 +76,11 @@ function App() {
           handleFilterCharacter={handleFilterCharacter}
         />
 
-        <ul className="list">{renderPhrases()}</ul>
+        <PhraseList
+          dataPhrases={dataPhrases}
+          filterQuote={filterQuote}
+          filterCharacter={filterCharacter}
+        />
 
         <form className="form" action="">
           <h2 className="form__title">Añadir nueva frase</h2>

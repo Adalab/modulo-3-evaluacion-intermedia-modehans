@@ -1,5 +1,5 @@
 import logo from '../images/logofriends.png';
-import '../styles/layout/Header.scss';
+import '../styles/components/Header.scss';
 
 const Header = () => {
   return (
