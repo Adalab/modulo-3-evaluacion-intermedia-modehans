@@ -34,7 +34,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(dataPhrases);
     if (dataPhrases.length === 0) {
       callToApi().then((response) => {
         setDataPhrases(response);
@@ -45,7 +44,6 @@ function App() {
   useEffect(() => {
     ls.set('dataLs', dataPhrases);
     const arrayCharacters = unique(dataPhrases);
-    console.log(arrayCharacters);
     setSelectCharacters(['Todos', ...arrayCharacters]);
   }, [dataPhrases]);
 
